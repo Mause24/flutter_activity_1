@@ -5,7 +5,7 @@ echo "🔍 Ejecutando pre-commit hooks..."
 
 # 1. Formatear el código
 echo "▶️ Formateando código..."
-flutter format --set-exit-if-changed .
+dart format --set-exit-if-changed .
 
 if [ $? -ne 0 ]; then
   echo "❌ El código no está formateado. Se corrigió automáticamente."

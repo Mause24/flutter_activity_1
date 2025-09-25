@@ -1,4 +1,4 @@
 class Env {
-  static const API_URL = String.fromEnvironment('API_URL');
-  static const FEATURE_X = String.fromEnvironment('FEATURE_X');
+  static const apiUrl = String.fromEnvironment('API_URL');
+  static const featureX = String.fromEnvironment('FEATURE_X');
 }

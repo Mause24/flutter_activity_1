@@ -1,6 +1,6 @@
-.PHONY: dev prod build-dev build-prod fmt analyze test clean
+.PHONY: dev prod build-dev build-prod format analyze test clean
 
-fmt:
+format:
 	dart format .
 
 analyze:
