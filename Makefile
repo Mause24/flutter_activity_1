@@ -1,4 +1,4 @@
-.PHONY: dev prod build-dev build-prod format analyze test clean
+.PHONY: dev prod build-dev build-prod format analyze test clean lint
 
 format:
 	dart format .
@@ -13,19 +13,23 @@ clean:
 	flutter clean
 
 dev:
-	@bash tool/env.sh dev
+	flutter run --dart-define-from-file=.env.dev
 
 prod:
-	@bash tool/env.sh prod
+	flutter run --dart-define-from-file=.env.prod
 
 build-dev:
-	@bash tool/env.sh dev build
+	flutter build --dart-define-from-file=.env.dev 
 
 build-prod:
-	@bash tool/env.sh prod build
+	flutter build --dart-define-from-file=.env.prod
 
 install-hooks:
 	@echo "Instalando pre-commit hook..."
 	@rm -f .git/hooks/pre-commit
 	@ln -s ../../tool/pre-commit.sh .git/hooks/pre-commit
 	@echo "Hook instalado!"
+
+lint:
+	@flutter analyze
+	@flutter pub run dart_code_metrics:metrics analyze lib

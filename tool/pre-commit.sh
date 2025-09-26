@@ -21,7 +21,16 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-# 3. Tests (opcional, descomenta si quieres que corran SIEMPRE antes de commit)
+# 3. Linter avanzado con dart_code_metrics
+echo "▶️ Verificando métricas de código..."
+flutter pub run dart_code_metrics:metrics analyze lib
+
+if [ $? -ne 0 ]; then
+  echo "❌ Problemas detectados por dart_code_metrics."
+  exit 1
+fi
+
+# 4. Tests (opcional, descomenta si quieres que corran SIEMPRE antes de commit)
 # echo "▶️ Corriendo tests..."
 # flutter test
 # if [ $? -ne 0 ]; then

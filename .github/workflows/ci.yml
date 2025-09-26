@@ -1,0 +1,40 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [master, development]
+  pull_request:
+    branches: [master, development]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout del repo
+      - uses: actions/checkout@v3
+
+      # 2. Configurar Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.29.0" # ajusta según tu versión
+
+      # 3. Instalar dependencias
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 4. Verificar formato
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      # 5. Análisis estático
+      - name: Analyze
+        run: flutter analyze
+
+      # 6. Métricas de código
+      - name: Dart Code Metrics
+        run: flutter pub run dart_code_metrics:metrics analyze lib
+
+      # 7. Tests
+      - name: Run tests
+        run: flutter test
