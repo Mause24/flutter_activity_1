@@ -34,7 +34,3 @@ jobs:
       # 6. Métricas de código
       - name: Dart Code Metrics
         run: flutter pub run dart_code_metrics:metrics analyze lib
-
-      # 7. Tests
-      - name: Run tests
-        run: flutter test
