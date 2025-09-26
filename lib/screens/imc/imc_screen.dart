@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:activity_1/shared/custom_route.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +24,8 @@ class _ImcCalculatorScreen extends State<ImcCalculatorScreen> {
       final height = double.parse(_heightCtrl.text);
 
       setState(() {
-        _result = "El peso es $weight, y la altura es $height";
+        _result =
+            "El peso es $weight, y la altura es $height por tanto su IMC es ${(weight / (pow(height, 2))).toStringAsFixed(3)}";
       });
     }
   }
