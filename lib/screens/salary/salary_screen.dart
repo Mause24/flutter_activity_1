@@ -20,12 +20,12 @@ class _SalaryCalculatorScreen extends State<SalaryCalculatorScreen> {
   void calculateTotal() {
     if (_formKey.currentState!.validate()) {
       final name = _nameCtrl.text;
-      final hours = int.parse(_hoursCtrl.text);
+      final hours = double.parse(_hoursCtrl.text);
       final value = double.parse(_valueCtrl.text);
 
       setState(() {
         _result =
-            "El empleado $name hizo $hours horas por un valor de $value COP la hora, dando un total de ${value * hours}";
+            "El empleado $name hizo $hours horas por un valor de $value COP la hora, dando un total de ${(value * hours).toStringAsFixed(3)} COP";
       });
     }
   }
@@ -134,8 +134,8 @@ class _SalaryCalculatorScreen extends State<SalaryCalculatorScreen> {
                         if (value == null || value.isEmpty) {
                           return "Ingrese las horas trabajadas";
                         }
-                        if (int.tryParse(value) == null) {
-                          return "Las horas trabajadas deben ser un numero entero";
+                        if (double.tryParse(value) == null) {
+                          return "Las horas trabajadas deben ser un numero real";
                         }
                         return null;
                       },
@@ -183,8 +183,8 @@ class _SalaryCalculatorScreen extends State<SalaryCalculatorScreen> {
                         if (value == null || value.isEmpty) {
                           return "Ingrese el valor de las horas";
                         }
-                        if (int.tryParse(value) == null) {
-                          return "El valor de las horas deben ser un numero entero";
+                        if (double.tryParse(value) == null) {
+                          return "El valor de las horas deben ser un numero real";
                         }
                         return null;
                       },
